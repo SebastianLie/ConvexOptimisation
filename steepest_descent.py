@@ -15,116 +15,6 @@ trainx = mat["Xtrain"]  # (3065,57)
 testy = mat["ytest"]  # (3065,1)
 trainy = mat["ytrain"]
 
-# Accuracy dictionary made using grid search
-acc_dict = {'Armijo beta = 0.1, sigma = 0.1, initial = 0': (0.9290364583333334, 195.51127672195435, 1414),
-            'Armijo beta = 0.1, sigma = 0.2, initial = 0': (0.9290364583333334, 196.40087056159973, 1414),
-            'Armijo beta = 0.1, sigma = 0.3, initial = 0': (0.9290364583333334, 195.7096071243286, 1414),
-            'Armijo beta = 0.1, sigma = 0.4, initial = 0': (0.9290364583333334, 195.77836728096008, 1414),
-            'Armijo beta = 0.2, sigma = 0.1, initial = 0': (0.9290364583333334, 121.56685972213745, 883),
-            'Armijo beta = 0.2, sigma = 0.2, initial = 0': (0.9290364583333334, 121.77729296684265, 883),
-            'Armijo beta = 0.2, sigma = 0.3, initial = 0': (0.9290364583333334, 121.65076088905334, 883),
-            'Armijo beta = 0.2, sigma = 0.4, initial = 0': (0.9290364583333334, 121.62672233581543, 883),
-            'Armijo beta = 0.3, sigma = 0.1, initial = 0': (0.9290364583333334, 266.47731757164, 1935),
-            'Armijo beta = 0.3, sigma = 0.2, initial = 0': (0.9290364583333334, 266.22399044036865, 1937),
-            'Armijo beta = 0.3, sigma = 0.3, initial = 0': (0.9290364583333334, 265.9267325401306, 1940),
-            'Armijo beta = 0.3, sigma = 0.4, initial = 0': (0.9290364583333334, 269.9959063529968, 1940),
-            'Armijo beta = 0.4, sigma = 0.1, initial = 0': (0.9290364583333334, 118.86411881446838, 863),
-            'Armijo beta = 0.4, sigma = 0.2, initial = 0': (0.9290364583333334, 118.42331576347351, 863),
-            'Armijo beta = 0.4, sigma = 0.3, initial = 0': (0.9290364583333334, 118.39830565452576, 863),
-            'Armijo beta = 0.4, sigma = 0.4, initial = 0': (0.9290364583333334, 118.93395256996155, 863),
-            'Armijo beta = 0.5, sigma = 0.1, initial = 0': (0.9290364583333334, 99.81205224990845, 724),
-            'Armijo beta = 0.5, sigma = 0.2, initial = 0': (0.9290364583333334, 99.76034188270569, 724),
-            'Armijo beta = 0.5, sigma = 0.3, initial = 0': (0.9290364583333334, 99.97069764137268, 724),
-            'Armijo beta = 0.5, sigma = 0.4, initial = 0': (0.9290364583333334, 199.71015739440918, 1448),
-            'Armijo beta = 0.6, sigma = 0.1, initial = 0': (0.9290364583333334, 89.46670746803284, 649),
-            'Armijo beta = 0.6, sigma = 0.2, initial = 0': (0.9290364583333334, 89.38792634010315, 649),
-            'Armijo beta = 0.6, sigma = 0.3, initial = 0': (0.9290364583333334, 148.95760369300842, 1082),
-            'Armijo beta = 0.6, sigma = 0.4, initial = 0': (0.9290364583333334, 149.07728338241577, 1082),
-            'Armijo beta = 0.7, sigma = 0.1, initial = 0': (0.9290364583333334, 84.01133441925049, 607),
-            'Armijo beta = 0.7, sigma = 0.2, initial = 0': (0.9290364583333334, 120.2623519897461, 867),
-            'Armijo beta = 0.7, sigma = 0.3, initial = 0': (0.9290364583333334, 119.86942911148071, 868),
-            'Armijo beta = 0.7, sigma = 0.4, initial = 0': (0.9290364583333334, 120.01704430580139, 868),
-            'Armijo beta = 0.8, sigma = 0.1, initial = 0': (0.9290364583333334, 101.90744209289551, 730),
-            'Armijo beta = 0.8, sigma = 0.2, initial = 0': (0.9290364583333334, 101.70398688316345, 730),
-            'Armijo beta = 0.8, sigma = 0.3, initial = 0': (0.9290364583333334, 101.40980052947998, 731),
-            'Armijo beta = 0.8, sigma = 0.4, initial = 0': (0.9290364583333334, 126.6762318611145, 914),
-            'Armijo beta = 0.9, sigma = 0.1, initial = 0': (0.9290364583333334, 89.11970686912537, 637),
-            'Armijo beta = 0.9, sigma = 0.2, initial = 0': (0.9290364583333334, 89.3410484790802, 637),
-            'Armijo beta = 0.9, sigma = 0.3, initial = 0': (0.9290364583333334, 99.19865036010742, 708),
-            'Armijo beta = 0.9, sigma = 0.4, initial = 0': (0.9290364583333334, 110.02369856834412, 787),
-            'Armijo beta = 0.1, sigma = 0.1, initial = 1': (0.9361979166666666, 34.913686752319336, 254),
-            'Armijo beta = 0.1, sigma = 0.2, initial = 1': (0.9348958333333334, 30.813579320907593, 223),
-            'Armijo beta = 0.1, sigma = 0.3, initial = 1': (0.9348958333333334, 30.897355318069458, 223),
-            'Armijo beta = 0.1, sigma = 0.4, initial = 1': (0.9348958333333334, 30.549256324768066, 223),
-            'Armijo beta = 0.2, sigma = 0.1, initial = 1': (0.9348958333333334, 40.04691982269287, 292),
-            'Armijo beta = 0.2, sigma = 0.2, initial = 1': (0.9348958333333334, 37.74006009101868, 275),
-            'Armijo beta = 0.2, sigma = 0.3, initial = 1': (0.9348958333333334, 37.774964809417725, 275),
-            'Armijo beta = 0.2, sigma = 0.4, initial = 1': (0.9348958333333334, 37.694212913513184, 275),
-            'Armijo beta = 0.3, sigma = 0.1, initial = 1': (0.935546875, 44.94977164268494, 324),
-            'Armijo beta = 0.3, sigma = 0.2, initial = 1': (0.935546875, 43.878644704818726, 317),
-            'Armijo beta = 0.3, sigma = 0.3, initial = 1': (0.935546875, 44.396249771118164, 317),
-            'Armijo beta = 0.3, sigma = 0.4, initial = 1': (0.9348958333333334, 37.20848369598389, 271),
-            'Armijo beta = 0.4, sigma = 0.1, initial = 1': (0.9348958333333334, 29.413305044174194, 214),
-            'Armijo beta = 0.4, sigma = 0.2, initial = 1': (0.9348958333333334, 29.47915530204773, 214),
-            'Armijo beta = 0.4, sigma = 0.3, initial = 1': (0.9348958333333334, 29.70651149749756, 215),
-            'Armijo beta = 0.4, sigma = 0.4, initial = 1': (0.9348958333333334, 29.619826555252075, 215),
-            'Armijo beta = 0.5, sigma = 0.1, initial = 1': (0.9348958333333334, 31.935614585876465, 232),
-            'Armijo beta = 0.5, sigma = 0.2, initial = 1': (0.9348958333333334, 32.078205585479736, 233),
-            'Armijo beta = 0.5, sigma = 0.3, initial = 1': (0.9348958333333334, 32.36146783828735, 234),
-            'Armijo beta = 0.5, sigma = 0.4, initial = 1': (0.9348958333333334, 39.08145785331726, 281),
-            'Armijo beta = 0.6, sigma = 0.1, initial = 1': (0.9361979166666666, 28.10730767250061, 193),
-            'Armijo beta = 0.6, sigma = 0.2, initial = 1': (0.935546875, 34.708186626434326, 235),
-            'Armijo beta = 0.6, sigma = 0.3, initial = 1': (0.935546875, 31.874711513519287, 230),
-            'Armijo beta = 0.6, sigma = 0.4, initial = 1': (0.935546875, 31.88076162338257, 230),
-            'Armijo beta = 0.7, sigma = 0.1, initial = 1': (0.9368489583333334, 24.866475105285645, 178),
-            'Armijo beta = 0.7, sigma = 0.2, initial = 1': (0.9368489583333334, 24.9862003326416, 178),
-            'Armijo beta = 0.7, sigma = 0.3, initial = 1': (0.9361979166666666, 24.76472806930542, 177),
-            'Armijo beta = 0.7, sigma = 0.4, initial = 1': (0.935546875, 23.955928325653076, 172),
-            'Armijo beta = 0.8, sigma = 0.1, initial = 1': (0.935546875, 24.680019855499268, 175),
-            'Armijo beta = 0.8, sigma = 0.2, initial = 1': (0.935546875, 25.08188533782959, 177),
-            'Armijo beta = 0.8, sigma = 0.3, initial = 1': (0.935546875, 24.94025468826294, 176),
-            'Armijo beta = 0.8, sigma = 0.4, initial = 1': (0.9361979166666666, 29.952916860580444, 212),
-            'Armijo beta = 0.9, sigma = 0.1, initial = 1': (0.935546875, 25.394136667251587, 175),
-            'Armijo beta = 0.9, sigma = 0.2, initial = 1': (0.935546875, 25.42099952697754, 175),
-            'Armijo beta = 0.9, sigma = 0.3, initial = 1': (0.935546875, 25.49980592727661, 176),
-            'Armijo beta = 0.9, sigma = 0.4, initial = 1': (0.935546875, 28.44990372657776, 197),
-            'Armijo beta = 0.1, sigma = 0.1, initial = -1': (0.9296875, 152.00957250595093, 1101),
-            'Armijo beta = 0.1, sigma = 0.2, initial = -1': (0.9296875, 151.39109420776367, 1101),
-            'Armijo beta = 0.1, sigma = 0.3, initial = -1': (0.9296875, 152.66269373893738, 1110),
-            'Armijo beta = 0.1, sigma = 0.4, initial = -1': (0.9296875, 159.33481121063232, 1164),
-            'Armijo beta = 0.2, sigma = 0.1, initial = -1': (0.9296875, 91.6049964427948, 666),
-            'Armijo beta = 0.2, sigma = 0.2, initial = -1': (0.9296875, 91.62103128433228, 666),
-            'Armijo beta = 0.2, sigma = 0.3, initial = -1': (0.9296875, 91.52620959281921, 666),
-            'Armijo beta = 0.2, sigma = 0.4, initial = -1': (0.9296875, 91.57408046722412, 666),
-            'Armijo beta = 0.3, sigma = 0.1, initial = -1': (0.9309895833333334, 73.21619772911072, 531),
-            'Armijo beta = 0.3, sigma = 0.2, initial = -1': (0.9296875, 61.06863021850586, 445),
-            'Armijo beta = 0.3, sigma = 0.3, initial = -1': (0.9296875, 61.27112674713135, 445),
-            'Armijo beta = 0.3, sigma = 0.4, initial = -1': (0.9296875, 61.77374505996704, 449),
-            'Armijo beta = 0.4, sigma = 0.1, initial = -1': (0.9309895833333334, 37.69517493247986, 274),
-            'Armijo beta = 0.4, sigma = 0.2, initial = -1': (0.9309895833333334, 37.940553426742554, 275),
-            'Armijo beta = 0.4, sigma = 0.3, initial = -1': (0.9309895833333334, 38.10611057281494, 275),
-            'Armijo beta = 0.4, sigma = 0.4, initial = -1': (0.9309895833333334, 38.23473882675171, 278),
-            'Armijo beta = 0.5, sigma = 0.1, initial = -1': (0.9309895833333334, 39.05155420303345, 283),
-            'Armijo beta = 0.5, sigma = 0.2, initial = -1': (0.9309895833333334, 38.90597224235535, 283),
-            'Armijo beta = 0.5, sigma = 0.3, initial = -1': (0.9309895833333334, 39.05856370925903, 284),
-            'Armijo beta = 0.5, sigma = 0.4, initial = -1': (0.9309895833333334, 40.121748208999634, 292),
-            'Armijo beta = 0.6, sigma = 0.1, initial = -1': (0.9303385416666666, 28.228463649749756, 204),
-            'Armijo beta = 0.6, sigma = 0.2, initial = -1': (0.9322916666666666, 26.34553861618042, 190),
-            'Armijo beta = 0.6, sigma = 0.3, initial = -1': (0.9303385416666666, 42.08839464187622, 303),
-            'Armijo beta = 0.6, sigma = 0.4, initial = -1': (0.9303385416666666, 42.59607529640198, 303),
-            'Armijo beta = 0.7, sigma = 0.1, initial = -1': (0.9309895833333334, 38.732409715652466, 278),
-            'Armijo beta = 0.7, sigma = 0.2, initial = -1': (0.9303385416666666, 36.570191860198975, 263),
-            'Armijo beta = 0.7, sigma = 0.3, initial = -1': (0.9322916666666666, 32.94886827468872, 236),
-            'Armijo beta = 0.7, sigma = 0.4, initial = -1': (0.9303385416666666, 32.43821382522583, 233),
-            'Armijo beta = 0.8, sigma = 0.1, initial = -1': (0.9309895833333334, 31.97647714614868, 227),
-            'Armijo beta = 0.8, sigma = 0.2, initial = -1': (0.9309895833333334, 34.62938165664673, 246),
-            'Armijo beta = 0.8, sigma = 0.3, initial = -1': (0.9322916666666666, 33.516358852386475, 237),
-            'Armijo beta = 0.8, sigma = 0.4, initial = -1': (0.9303385416666666, 33.26203012466431, 236),
-            'Armijo beta = 0.9, sigma = 0.1, initial = -1': (0.9309895833333334, 30.66697907447815, 213),
-            'Armijo beta = 0.9, sigma = 0.2, initial = -1': (0.9309895833333334, 33.178274393081665, 231),
-            'Armijo beta = 0.9, sigma = 0.3, initial = -1': (0.9309895833333334, 32.55791258811951, 226),
-            'Armijo beta = 0.9, sigma = 0.4, initial = -1': (0.9322916666666666, 34.49678921699524, 240)}
-
 
 ## line search methods  ##
 
@@ -177,25 +67,6 @@ def golden_search(w, d, a, b, maxit, tol):
             break
     return (b-a)/2
 
-def bisection(a,b,tol):
-
-    maxit = 10000
-    la = loglikelihood(a, trainx, trainy)
-    lb = loglikelihood(b, trainx, trainy)
-    
-    for i in range(maxit):
-        x = (a+b)/2
-        lx = loglikelihood(x, trainx,trainy)
-        if (lx * lb <= 0):
-            a = x
-            la = lx
-        else:
-            b = x
-            lb = lx
-        if (b-a) < tol:
-            break
-    return x
-
 
 def armijo(alpha_bar,w,d,beta,sigma):
     fx0 = loglikelihood(w,trainx,trainy)
@@ -234,7 +105,7 @@ def sigmoid(x):
 
 
 def steepest_descent(X,y,w0,maxit,tol,*line_search_params):  # use varargs
-    step_size = 1
+    step_size = 0.005
     w = w0  # inital guess
     line_search_method = line_search_params[0]
     obj_value_list = list()
@@ -244,15 +115,10 @@ def steepest_descent(X,y,w0,maxit,tol,*line_search_params):  # use varargs
         grad = loglikelihood_grad(w,trainx,trainy)
         d = -grad
         norm_d = np.linalg.norm(d)
-        if norm_d < tol:
-            break
-        obj_value = loglikelihood(w,trainx,trainy)[0]
-        obj_value_list.append(obj_value)
-        print("Iteration {0}: obj = {1:9.3f}".format(i,obj_value))
+        print("Iteration {0}: norm of d = {1:9.3f}".format(i,norm_d))
         if norm_d < tol:
             break
         else:
-            
             if line_search_method == "armijo":
                 beta = line_search_params[1]
                 sigma = line_search_params[2]
@@ -277,7 +143,7 @@ def steepest_descent(X,y,w0,maxit,tol,*line_search_params):  # use varargs
             w = w +  step_size * d
             num_iter += 1
             
-    return w, obj_value_list, num_iter 
+    return w,num_iter 
 
 ######################################
 
@@ -296,7 +162,7 @@ def predict(w, xtest, ytest):
 
 
 # Vimpt
-def test_grad(): # proof that grad function works well enough
+def test_grad(): # proof that grad function works well enough, smaller values = better 
     alp = 1*10**(-8)
     x = np.random.rand(57)
     differences = list()
@@ -338,7 +204,7 @@ def GridSearch():
             acc_dict["w0 = -1, Armijo beta = {0}, sigma = {1}".format(b,s)] = (predict(wA,testx,testy),end-start)
 
 
-def plot_results():
+def plot_results(): # plots best result for both fixed and armijo
     
     wA, armijo_obj_values, num_iter1 = steepest_descent(trainx,trainy,np.ones(57),100000,100,"armijo",0.7,0.2)
     wA2, armijo_obj_values2, num_iter2 = steepest_descent(trainx,trainy,np.ones(57),100000,100,"armijo",0.7,0.1)
@@ -365,14 +231,9 @@ def plot_results():
 #GridSearch()
 #plot_results()
 start = time.time()
-wA1, armijo_obj_values, num_iter1 = steepest_descent(trainx,trainy,2*np.ones(57),100000,10,"armijo",0.7,0.1)
+wA1, armijo_obj_values, num_iter1 = steepest_descent(trainx,trainy,2*np.ones(57),100000,100,"armijo",0.7,0.1)
 end = time.time()
-#wA2, armijo_obj_values, num_iter1 = steepest_descent(trainx,trainy,np.ones(57),100000,100,"armijo",0.7,0.4)
-
-#wA3, armijo_obj_values, num_iter1 = steepest_descent(trainx,trainy,np.ones(57),100000,100,"armijo",0.6,0.1)
 print(predict(wA1,trainx,trainy))
 print(end-start)
 print(predict(wA1,testx,testy))
-#print(predict(wA2,trainx,trainy))
-#print(predict(wA3,trainx,trainy))
 
